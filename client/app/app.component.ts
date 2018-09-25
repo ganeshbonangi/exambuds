@@ -4,6 +4,6 @@ import { Component } from '@angular/core';
     selector: 'app',
     template: `<navbar></navbar>
     <router-outlet></router-outlet>
-    <footer></footer>`
+    <app-footer></app-footer>`
 })
 export class AppComponent {}
