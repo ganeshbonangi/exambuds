@@ -7,13 +7,13 @@ interface Thing {
 }
 
 @Component({
-    selector: 'main',
+    selector: 'main-app',
     template: require('./main.html'),
     styles: [require('./main.scss')],
 })
-export class MainComponent implements OnInit {
+export class MainComponent {
 
-    awesomeThings: Thing[] = [];
+ /*   awesomeThings: Thing[] = [];
     newThing = '';
 
     static parameters = [HttpClient];
@@ -47,5 +47,5 @@ export class MainComponent implements OnInit {
             .subscribe(() => {
                 console.log('Deleted Thing');
             });
-    }
+    }*/
 }
