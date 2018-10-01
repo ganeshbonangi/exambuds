@@ -1,59 +1,23 @@
 import { NgModule } from '@angular/core';
 import {
-  MatButtonModule,
-  MatIconModule,
-  MatFormFieldModule,
-  MatInputModule,
-  MatDatepickerModule,
-  MatNativeDateModule,
-  MatCheckboxModule,
-  MatSidenavModule,
-  MatToolbarModule,
-  MatListModule,
-  MatTabsModule,
-  MatCardModule,
-  MatSelectModule,
-  MatProgressSpinnerModule,
-  MatDialogModule,
-  MatTableModule
-} from '@angular/material';
+    MdcButtonModule,
+    MdcCheckboxModule,
+    MdcDialogModule,
+    MdcIconModule,
+    MdcFormFieldModule,
+    MdcListModule,
+    MdcTextFieldModule
+} from '@angular-mdc/web';
 
 @NgModule({
-  imports: [
-    MatButtonModule,
-    MatIconModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatCheckboxModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatListModule,
-    MatTabsModule,
-    MatCardModule,
-    MatSelectModule,
-    MatProgressSpinnerModule,
-    MatDialogModule,
-    MatTableModule
-  ],
-  exports: [
-    MatButtonModule,
-    MatIconModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatCheckboxModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatListModule,
-    MatTabsModule,
-    MatCardModule,
-    MatSelectModule,
-    MatProgressSpinnerModule,
-    MatDialogModule,
-    MatTableModule
-  ]
+    exports: [
+        MdcButtonModule,
+        MdcCheckboxModule,
+        MdcDialogModule,
+        MdcFormFieldModule,
+        MdcIconModule,
+        MdcListModule,
+        MdcTextFieldModule
+    ]
 })
-export class MaterialModule {}
+export class AppMaterialModule { }

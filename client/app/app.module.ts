@@ -18,6 +18,8 @@ import { DirectivesModule } from '../components/directives.module';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AccountModule } from './account/account.module';
 import { AdminModule } from './admin/admin.module';
+import { AppMaterialModule } from './material.module';
+
 
 export function tokenGetter() {
     return localStorage.getItem('id_token');
@@ -43,6 +45,7 @@ const appRoutes: Routes = [{ path: '',
         DirectivesModule,
         AccountModule,
         AdminModule,
+        AppMaterialModule
     ],
     declarations: [
         AppComponent,

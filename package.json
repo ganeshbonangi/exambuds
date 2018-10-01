@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "main": "server/index.js",
   "dependencies": {
+    "@angular-mdc/web": "^0.40.0",
     "@angular/animations": "^6.1.8",
     "@angular/cdk": "^6.4.7",
     "@angular/material": "^6.4.7",
