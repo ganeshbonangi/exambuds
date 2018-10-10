@@ -1,0 +1,99 @@
+<div>
+    <div text-angular-toolbar ta-toolbar="at.toolBarFeatures" name="statictoolbar" class="statictoolbar" id="statictoolbar" ng-class="{'sticky':at.boolChangeClass}"></div>
+    <div class="auther-tmp-container">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <label class="col-xs-5 col-md-3">
+                        <input type="radio" name="abc" ng-model="at.searchBy" value="instute" ng-change="at.filterChange()"/> Instute Content
+                    </label>
+                    <div class="col-xs-7 col-md-6" ng-show="at.searchBy==='instute'">
+                        Exams
+                        <select ng-model="at.cat" ng-change="at.chapterChange();at.showCatErrMessage=false;">
+                            <option value="{{chapter._id}}" ng-repeat="chapter in at.exams">
+                                {{chapter.name.length>50?(chapter.name.slice(0,50)+'...'):chapter.name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row" ng-if="!at.Auth.isOrg()">
+                    <label class="col-md-3">
+                        <input type="radio" name="abc" ng-model="at.searchBy" value="subject" ng-change="at.filterChange()"/> Topic
+                    </label>
+                    <div class="col-md-3" ng-show="at.searchBy==='subject'">
+                        Subject
+                         <select ng-model="at.chapters" ng-options="subject.chapters as subject.displaytext for subject in at.subjects track by subject.displaytext" ng-change="at.subjectChange()">
+                        </select>               
+                    </div>
+                    <div class="col-md-6" ng-show="at.searchBy==='subject'">
+                        Chapter
+                        <select ng-model="at.cat" ng-change="at.chapterChange();at.showCatErrMessage=false;">
+                            <option value="{{chapter.url}}" ng-repeat="chapter in at.chapters">
+                                {{chapter.displaytext.length>50?(chapter.displaytext.slice(0,50)+'...'):chapter.displaytext}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row" ng-if="!at.Auth.isOrg()">
+                    <label class="col-md-3">
+                        <input type="radio" name="abc" ng-model="at.searchBy" value="question" ng-change="at.filterChange()"/> Question
+                    </label>
+                    <div class="col-md-3" ng-show="at.searchBy==='question'">
+                        Question Number<input type="text" ng-model="at.qid" placeholder="Question Number" />
+                    </div>
+                </div>
+                <div class='text-center'>
+                    <button class="btn btn-primary btn-xs" ng-click="at.getQuestion()">Search</button>
+                    <a class="btn btn-default btn-xs" target="_blank" ng-disabled="at.isAddQuestionDisable()" href="/mocktest?mocktestId={{at.cat}}"><i class="fa fa-eye" aria-hidden="true"></i> Preview </a>
+                </div>
+                <uib-alert type="danger" ng-show="at.showCatErrMessage">
+                    <strong>Warning!</strong> Some thing went wrong.
+                </uib-alert>
+            </div>
+        </div>
+        <!--div id="questionContainer">
+            Enter question information(This is for passages)
+            <div text-angular ng-model="at.questions.information" ta-default-wrap="p" ta-target-toolbars='statictoolbar'> </div>
+            <br />
+            <div>
+            </div>
+        </div> -->
+        <div>
+            <uib-accordion close-others="false">
+                <uib-accordion-group ng-init="isOpned = false;" is-open="isOpned" ng-repeat="question in at.questions">
+                <div class="question-block" >
+                  <uib-accordion-heading ng-class="at.isInValid[$index]?'bg-danger':'bg-success'">
+                    <span class="badge badge-auth">{{$index+1}}</span>
+                    <p class="inline-block" ng-bind-html="at.stripText(question.questiontext)"></p>
+                    <span class="pull-right action-panel">
+                        <button ng-disabled="!isOpned" class="btn btn-default btn-xs" ng-click="at.editQuestion($event, $index)">
+                            <i class="fa fa-pencil" aria-hidden="true"></i> Edit
+                        </button>                        
+                        <button ng-disabled="!at.editModeOn[$index]" class="btn btn-default btn-xs" ng-click="at.saveQuestion($event, $index)">
+                            <i class="fa fa-floppy-o" aria-hidden="true"></i> Save
+                        </button>                        
+                        <button ng-disabled="!at.editModeOn[$index]" class="btn btn-default btn-xs" ng-click="at.deleteQuestion($event, $index)">
+                            <i class="fa fa-trash" aria-hidden="true"></i> Delete
+                        </button>
+                        <i class="glyphicon" ng-class="{'glyphicon-chevron-down': isOpned, 'glyphicon-chevron-right': !isOpned}" ></i>
+                    </span>
+                  </uib-accordion-heading>
+                  <uib-alert type="danger" dismiss-on-timeout="10000" close="at.isInValid[$index]=false;" ng-if="at.isInValid[$index]"><strong>Warning!</strong> {{at.errMsg}}</uib-alert>
+                  <mcmq-auth ng-if="isOpned" question="question" is-ans="isAns" edit-mode-on="at.editModeOn[$index]"> </mcmq-auth> 
+                  <div class="loader-layer" ng-show="at.loader[$index]">
+                  </div>
+                  <i class="fa fa-spinner fa-spin" ng-show="at.loader[$index]" ></i>
+                </div>
+                </uib-accordion-group>
+            </uib-accordion>
+            <div class="add-question">
+                <button class="btn btn-default btn-xs" ng-click="at.addQuestion()" ng-disabled="at.isAddQuestionDisable()">
+                    <i class="fa fa-plus" aria-hidden="true"></i> Add Question 
+                </button>   
+            </div>
+        </div>
+        <div class="loader-layer" ng-show="at.showLoader">
+        </div>
+        <i class="fa fa-spinner fa-spin" ng-show="at.showLoader" ></i>
+    </div>
+</div>

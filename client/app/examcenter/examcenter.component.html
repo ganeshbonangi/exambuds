@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                {{examcenterCtrl.exam.title}}
+                <timer duration="examcenterCtrl.exam.duration" class="pull-right cout-down"></timer>
+            </h3>
+        </div>
+        <div class="panel-body">
+            <div class=" row">
+                <div class="col-lg-8 col-md-8 right-border">
+                    <fib-dropdown-preview ng-if="examcenterCtrl.exam.questions[examcenterCtrl.currentQuestion].questionType=='fibd'"></fib-dropdown-preview>
+                    <fib-text-preview ng-if="examcenterCtrl.exam.questions[examcenterCtrl.currentQuestion].questionType=='fibt'"></fib-text-preview>
+                    <mcss-preview ng-if="examcenterCtrl.exam.questions[examcenterCtrl.currentQuestion].questionType=='mcss'" question="examcenterCtrl.exam.questions[examcenterCtrl.currentQuestion]"></mcss-preview>
+                    <mcms-preview question="examcenterCtrl.exam.questions[examcenterCtrl.currentQuestion]" ng-if="examcenterCtrl.exam.questions[examcenterCtrl.currentQuestion].questionType=='mcms'">
+                    </mcms-preview>
+                    <guidlines-preview ng-if="examcenterCtrl.exam.questions[examcenterCtrl.currentQuestion].questionType=='guid'"></guidlines-preview>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <button ng-repeat="question in examcenterCtrl.exam.questions" class="btn btn-default btn-xs" ng-click="examcenterCtrl.getQuestoin($index, question.questionId)" ng-class="{active:examcenterCtrl.currentQuestion==$index}">{{$index+1}}</button>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer text-center">
+            <button class="btn btn-default" ng-click="examcenterCtrl.saveNdNext()">Save and Next</button>
+            <button class="btn btn-default">Submit</button>
+            <button class="btn btn-default" ng-click="examcenterCtrl.resetCurrentQuestion()">Reset</button>
+        </div>
+    </div>
+</div>
