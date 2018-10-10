@@ -1,0 +1,64 @@
+<div>
+    <div class="modal-header">
+        <h4>Exam SetUp</h4>
+    </div>
+    <div class="modal-body">
+        <div class="col-lg-12 form-group">
+            <label>
+                Exam Name
+            </label>
+            <div>
+                <input class='formcontrolle form-control' type="text" ng-model="examSetupCtrl.exam.name" placeholder="Exam Name" />
+            </div>
+        </div>
+        <div class='col-lg-12  form-group'>
+            <label>
+                Class Rooms To Be Enrolled
+            </label>
+            <span class="btn btn-default student-card" ng-repeat="student in examSetupCtrl.exam.classRooms">{{student.name}}<span aria-hidden="true" ng-click="examSetupCtrl.removeClassRoomFromExam($index)">&times;</span></span>
+        </div>
+        <div class="col-lg-12 form-group">
+            <div class="right-inner-addon">
+                <i class="glyphicon glyphicon-search"></i>
+                <input type="search" class="form-control" ng-change="examSetupCtrl.getClassRooms()" aria-label="" placeholder="Add Class Room" ng-model="examSetupCtrl.className">
+                <div class="list-group col-lg-12 suggestion-list" ng-show="examSetupCtrl.showList">
+                    <a ng-click="examSetupCtrl.addClassRoomToExam(clsObj)" class="list-group-item" ng-repeat="clsObj in examSetupCtrl.suggestedClassRooms">{{clsObj.name}}</a>
+                </div>
+            </div>
+        </div>
+        <div class='col-lg-12 form-group'>
+            <label>Exam Start Date</label>
+            <div class="form-group">
+                <div>
+                    <p class="input-group">
+                        <input type="text" class="form-control" uib-datepicker-popup="{{examSetupCtrl.format}}" ng-model="examSetupCtrl.exam.activationdate" is-open="examSetupCtrl.popup1.opened" datepicker-options="examSetupCtrl.dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" placeholder="Activation Date" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="examSetupCtrl.open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <label>Exam End Date</label>
+            <div class="form-group">
+                <div>
+                    <p class="input-group">
+                        <input type="text" class="form-control" name="examEndDate" uib-datepicker-popup="{{examSetupCtrl.format}}" ng-model="examSetupCtrl.exam.expiredate" is-open="examSetupCtrl.popup2.opened" datepicker-options="examSetupCtrl.endDateOptions" placeholder="Expiration Date" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="examSetupCtrl.open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class='col-sm-12 form-group'>
+            <label class="col-sm-3">Duration of Exam</label>
+            <div uib-timepicker ng-model="examSetupCtrl.exam.duration" ng-change="changed()" hour-step="1" minute-step="5" show-meridian="false"></div>
+        </div>
+    </div>
+    <div class=" modal-footer">
+            <button  ng-hide="examSetupCtrl.upDateTheExamVar" class="btn btn-success" ng-click="examSetupCtrl.saveTheExam()">Save</button>
+            <button  ng-show="examSetupCtrl.upDateTheExamVar" class="btn btn-success" ng-click="examSetupCtrl.revertingBack()">Reset</button>
+            <button  ng-show="examSetupCtrl.upDateTheExamVar" class="btn btn-success"  ng-click="examSetupCtrl.updateTheExam()">Update</button>
+            <button class="btn btn-danger" ng-click="examSetupCtrl.cancel()">Cancel</button>
+    </div>
+</div>
