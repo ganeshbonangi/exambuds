@@ -6,7 +6,8 @@ module.exports = {
     // MongoDB connection options
     mongo: {
         useMongoClient: true,
-        uri: process.env.MONGODB_URI || 'mongodb://localhost/ex-dev'
+        uri: process.env.MONGODB_URI || 'mongodb://localhost/examcolors',
+    	debug:true
     },
 
     // Seed database on startup

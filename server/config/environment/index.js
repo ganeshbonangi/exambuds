@@ -32,15 +32,13 @@ var all = {
 
     // Secret for session, you will want to change this and make it an environment variable
     secrets: {
-        session: 'ex-secret'
+        session: 'auth-cell-secret'
     },
 
     // MongoDB connection options
     mongo: {
         options: {
-            db: {
-                safe: true
-            }
+            useNewUrlParser: true
         }
     },
 

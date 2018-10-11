@@ -12,7 +12,6 @@ import expressConfig from './config/express';
 import registerRoutes from './routes';
 import seedDatabaseIfNeeded from './config/seed';
 
-
 // Connect to MongoDB
 const mongooseConnectionPromise = mongoose.connect(config.mongo.uri, config.mongo.options);
 mongoose.connection.on('error', function(err) {

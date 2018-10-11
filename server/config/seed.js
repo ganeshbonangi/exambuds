@@ -2,7 +2,7 @@
  * Populate DB with sample data on server start
  * to disable, edit config/environment/index.js, and set `seedDB: false`
  */
-
+/*s
 import Thing from '../api/thing/thing.model';
 import User from '../api/user/user.model';
 import config from './environment/';
@@ -60,4 +60,4 @@ export default function seedDatabaseIfNeeded() {
     promises.push(userPromise);
 
     return Promise.all(promises);
-}
+}*/
