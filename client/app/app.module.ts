@@ -4,6 +4,8 @@ import {
 } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 import {
     removeNgStyles,
     createNewHosts,
@@ -14,17 +16,19 @@ import {
 
 import { AppComponent } from './app.component';
 import { MainModule } from './main/main.module';
+import { ContactUsModule } from './contact-us/contact-us.module';
+import { TCModule } from './tc/tc.module';
+import { PrivacyModule } from './privacy/privacy.module';
 import { DirectivesModule } from '../components/directives.module';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AccountModule } from './account/account.module';
 import { AdminModule } from './admin/admin.module';
 import { AppRoutingModule } from './app-routing.module';
+import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 
 export function tokenGetter() {
     return localStorage.getItem('id_token');
 }
-
-
 
 @NgModule({
     imports: [
@@ -39,7 +43,13 @@ export function tokenGetter() {
         DirectivesModule,
         AccountModule,
         AdminModule,
-        AppRoutingModule
+        AppRoutingModule,
+        ContactUsModule,
+        TCModule,
+        PrivacyModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+        MatCheckboxModule
     ],
     declarations: [
         AppComponent,

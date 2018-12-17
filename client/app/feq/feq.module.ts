@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import {MatButtonModule, MatCheckboxModule} from '@angular/material';
-
-import { MainComponent } from './main.component';
+import { FeqComponent } from './feq.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
 
 
 export const ROUTES: Routes = [
-    { path: 'home', component: MainComponent },
+    { path: 'feq', component: FeqComponent },
 ];
 
 
@@ -17,16 +17,14 @@ export const ROUTES: Routes = [
         BrowserModule,
         FormsModule,
         RouterModule.forChild(ROUTES),
-        MatButtonModule,
-        MatCheckboxModule
-
+        MatFormFieldModule,
+        MatSelectModule
     ],
     declarations: [
-        MainComponent,
+        FeqComponent
     ],
-
     exports: [
-        MainComponent,
+        FeqComponent
     ],
 })
-export class MainModule {}
+export class FeqModule {}
