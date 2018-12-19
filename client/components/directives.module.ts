@@ -10,12 +10,13 @@ import { AuthModule } from './auth/auth.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { OauthButtonsComponent } from './oauth-buttons/oauth-buttons.component';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
     imports: [
         CommonModule,
         AuthModule,
-
+        MatButtonModule,
         RouterModule,
     ],
     declarations: [

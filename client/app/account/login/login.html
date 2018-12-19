@@ -1,4 +1,16 @@
 <div class="container">
+
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="User name/Email" value="">
+    </mat-form-field>
+      <mat-form-field class="example-full-width">
+      <input matInput placeholder="Password" value="">
+    </mat-form-field>
+    <button mat-raised-button>Login</button>
+    <button mat-raised-button>Register</button>
+  </form>
+
   <div class="row">
     <div class="col-sm-12">
       <h1>Login</h1>
@@ -12,6 +24,7 @@
           <label>Email</label>
 
           <input type="email" name="email" class="form-control" [(ngModel)]="user.email" required #email="ngModel">
+
         </div>
 
         <div class="form-group">
