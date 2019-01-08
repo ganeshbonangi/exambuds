@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { ContactUsComponent } from './contact-us.component';
+import { AboutUsComponent } from './about-us.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 
 
 export const ROUTES: Routes = [
-    { path: 'contact-us', component: ContactUsComponent },
+    { path: 'about-us', component: AboutUsComponent },
 ];
 
 
@@ -21,10 +21,10 @@ export const ROUTES: Routes = [
         MatSelectModule
     ],
     declarations: [
-        ContactUsComponent
+        AboutUsComponent
     ],
     exports: [
-        ContactUsComponent
+        AboutUsComponent
     ],
 })
-export class ContactUsModule {}
+export class AboutUsModule {}

@@ -17,6 +17,7 @@ import {
 import { AppComponent } from './app.component';
 import { MainModule } from './main/main.module';
 import { ContactUsModule } from './contact-us/contact-us.module';
+import { AboutUsModule } from './about-us/about-us.module';
 import { TCModule } from './tc/tc.module';
 import { PrivacyModule } from './privacy/privacy.module';
 import { DirectivesModule } from '../components/directives.module';
@@ -45,6 +46,7 @@ export function tokenGetter() {
         AdminModule,
         AppRoutingModule,
         ContactUsModule,
+        AboutUsModule,
         TCModule,
         PrivacyModule,
         BrowserAnimationsModule,
