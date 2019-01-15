@@ -12,6 +12,6 @@ router.get('/:id', auth.isAuthenticated(), controller.show);
 router.post('/students', controller.getFilteredStudents);
 router.post('/forgotPassword', controller.forgotPassword);
 router.post('/resetEmail', controller.resetEmail);
-router.post('/', controller.create);
-
+router.post('/', controller.create); 
+router.post('/contact',controller.contact); 
 module.exports = router;
