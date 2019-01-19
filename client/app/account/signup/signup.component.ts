@@ -9,6 +9,8 @@ interface User {
     name: string;
     email: string;
     password: string;
+    role: string;
+    mobileNumber: string;
 }
 
 @Component({
@@ -17,9 +19,11 @@ interface User {
 })
 export class SignupComponent {
     user: User = {
+        role:'user',
         name: '',
         email: '',
-        password: ''
+        password: '',
+        mobileNumber:''
     };
     errors: {field?: Error} = {};
     submitted = false;
@@ -30,8 +34,16 @@ export class SignupComponent {
     static parameters = [AuthService, Router];
     constructor(_AuthService_: AuthService, router: Router) {
         this.AuthService = _AuthService_;
-        this.Router = router;    }
-
+        this.Router = router;    
+        this.user = {
+                        role:'user',
+                        name: '',
+                        email: '',
+                        password: '',
+                        mobileNumber:''
+                    };
+        }
+/*
     register(form) {
         if(form.invalid) return;
 
@@ -60,5 +72,33 @@ export class SignupComponent {
 
                 this.submitted = false;
             });
+    }*/
+    register(form) {
+    this.submitted = true;
+
+    if (form.$valid) {
+      this.AuthService.createUser({
+          name: this.user.name,
+          email: this.user.email,
+          password: this.user.password,
+          cell:this.user.mobileNumber,
+          role:this.user.role
+
+        })
+        .then(() => {
+          // Account created, redirect to home
+          this.Router.navigateByUrl('/home');
+        })
+        .catch(err => {
+          err = err.data;
+          this.errors = {};
+
+          // Update validity of form fields that match the mongoose errors
+         /* angular.forEach(err.errors, (error, field) => {
+            form[field].$setValidity('mongoose', false);
+            this.errors[field] = error.message;
+          });*/
+        });
     }
+  }
 }

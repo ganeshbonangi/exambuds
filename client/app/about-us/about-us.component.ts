@@ -7,11 +7,11 @@ interface Thing {
 }
 
 @Component({
-    selector: 'contact-us',
-    template: require('./contact-us.html'),
-    styles: [require('./contact-us.scss')],
+    selector: 'about-us',
+    template: require('./about-us.html'),
+    styles: [require('./about-us.scss')],
 })
-export class ContactUsComponent implements OnInit {
+export class AboutUsComponent implements OnInit {
 
     awesomeThings: Thing[] = [];
     newThing = '';
