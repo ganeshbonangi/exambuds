@@ -203,7 +203,7 @@ export function contact(req,res){
     to:'exambuds@gmail.com',
     bcc:'kattamurianitha18@gmail.com,anithakattamuri1822@gmail.com',
     subject: 'Grievance Type: ' +req.body.subj,
-    html:'<table style="border: 2px solid DodgerBlue;","border: 1px solid black;"><tr><td><b>Name:</b></td><td>'+name+'</td></tr> <tr><td><b>Email:</b></td><td>'+email+'</td></tr> <tr><td><b>Role:</b></td>'+role+'</td></tr><tr><td><b>Phone:</b></td><td>'+phone+'</td></tr><tr><td><b>Grievance Description:</b></td><td>'+content+'</td></tr></p></table>',
+    html:'<table border: 1px solid black;border-collapse: collapse;><tr><th><b>Name:</b></th><td>'+name+'</td></tr> <tr><th><b>Email:</b></th><td>'+email+'</td></tr> <tr><th><b>Role:</b></th><td>'+role+'</td></tr> <tr><th><b>Phone:</b></th><td>'+phone+'</td></tr> <tr><th><b>Grievance Description:</b></th><td>'+content+'</td></tr></p></table>',
     text:'',
     attachments: [{   // stream as an attachment
       filename: 'Desert.jpg',
