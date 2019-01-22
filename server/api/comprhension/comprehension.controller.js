@@ -13,6 +13,8 @@ import _ from 'lodash';
 import Question from './question.model';
 import Counters from './../counter/counter.model';
 
+
+
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
   return function(entity) {
@@ -59,12 +61,12 @@ function handleError(res, statusCode) {
     res.status(statusCode).send(err);
   };
 }
- function getValueForNextSequence(){
+function getValueForNextSequence(){
     return Counters.findOneAndUpdate(
            {id: 'questions_id' },
            {$inc:{sequence_value:1}}
     ).exec();
- }
+}
 // Gets a list of Questions
 export function index(req, res) {
   return Question.find().exec()
