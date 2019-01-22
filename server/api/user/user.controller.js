@@ -6,7 +6,10 @@ import config from '../../config/environment';
 import jwt from 'jsonwebtoken';
 import nodemailer from 'nodemailer';
 import crypto from 'crypto';
+import * as fs from 'fs';
+function contatc(req,res){
 
+}
 function validationError(res, statusCode) {
   statusCode = statusCode || 422;
   return function(err) {
@@ -45,7 +48,6 @@ export function getFilteredStudents(req, res) {
     .catch(handleError(res));
 }
 
-
 /**
  * Creates a new user
  */
@@ -53,7 +55,7 @@ export function create(req, res, next) {
   var newUser = new User(req.body);
   newUser.provider = 'local';
   newUser.save()
-    .then(function(user) {
+     .then(function(user) {
       var token = jwt.sign({ _id: user._id }, config.secrets.session, {
         expiresIn: 60 * 60 * 5
       });
@@ -178,6 +180,44 @@ export function resetEmail(req, res, next){
         }
       })
 }
+
+/** Contact us */
+
+export function contact(req,res){
+  var name=req.body.name;
+  var email= req.body.email;
+  var phone= req.body.phone;
+  var content= req.body.content;
+  var role=req.body.role;
+  
+  
+  var transporter=nodemailer.createTransport({
+    service:'Gmail',
+    auth:{
+      user:'exambuds@gmail.com',
+      pass:'Exambuds@1'
+    }
+  });
+  var mailOption={
+    from:'exambuds@gmail.com',
+    to:'exambuds@gmail.com',
+    bcc:'kattamurianitha18@gmail.com,anithakattamuri1822@gmail.com',
+    subject: 'Grievance Type: ' +req.body.subj,
+    html:'<table border: 1px solid black;border-collapse: collapse;><tr><th><b>Name:</b></th><td>'+name+'</td></tr> <tr><th><b>Email:</b></th><td>'+email+'</td></tr> <tr><th><b>Role:</b></th><td>'+role+'</td></tr> <tr><th><b>Phone:</b></th><td>'+phone+'</td></tr> <tr><th><b>Grievance Description:</b></th><td>'+content+'</td></tr></p></table>',
+    text:'',
+    attachments: [{   // stream as an attachment
+      filename: 'Desert.jpg',
+      path: 'Desert.jpg'
+  },]
+  };
+  transporter.sendMail(mailOption,function(err){
+    if (!err) {
+      return res.json({ message: 'Kindly check your mail!' });
+    } else {
+      return res.status(501).end();//failed send mail
+    }
+  })
+}
 /**
 * forget password
 */
@@ -201,3 +241,4 @@ export function forgotPassword(req, res, next) {
     })
     .catch(err => next(err));
 }
+
