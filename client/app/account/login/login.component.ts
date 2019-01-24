@@ -1,8 +1,9 @@
 // @flow
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
-import { Router } from '@angular/router';
-import { AuthService } from '../../../components/auth/auth.service';
+import {Router} from '@angular/router';
+import {AuthService} from '../../../components/auth/auth.service';
+import {FormGroup, FormControl, Validators} from '@angular/forms';
 
 interface User {
     name: string;
@@ -11,42 +12,32 @@ interface User {
 }
 
 @Component({
-    selector: 'login',
-    template: require('./login.html'),
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
-    user: User = {
-        name: '',
-        email: '',
-        password: '',
-    };
-    errors = {login: undefined};
-    submitted = false;
-    AuthService;
-    Router;
+export class LoginComponent implements OnInit {
 
+    loginForm: FormGroup;
 
-    static parameters = [AuthService, Router];
-    constructor(_AuthService_: AuthService, router: Router) {
-        this.AuthService = _AuthService_;
-        this.Router = router;
-
+    constructor(private authService: AuthService) {
     }
 
-    login(form) {
-        if(form.invalid) return;
+    ngOnInit() {
+        this.loginForm = new FormGroup({
+            email: new FormControl('', {
+                validators: [Validators.required, Validators.email]
+            }),
+            password: new FormControl('', {validators: [Validators.required]})
+        });
+    }
 
-        return this.AuthService.login({
-            email: this.user.email,
-            password: this.user.password
-        })
-            .then(() => {
-                // Logged in, redirect to home
-                this.Router.navigateByUrl('/home');
-
-            })
-            .catch(err => {
-                this.errors.login = err.json().message;
-            });
+    onSubmit() {
+        console.log(this.loginForm.value.email);
+        console.log(this.loginForm.value.password);
+        /*  return this.authService.login({
+              email: this.loginForm.value.email,
+              password: this.loginForm.value.password
+          })*/
     }
 }
