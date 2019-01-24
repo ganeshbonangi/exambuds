@@ -23,10 +23,10 @@ export class MainComponent implements OnInit {
     }
 
     ngOnInit() {
-        return this.http.get('/api/things')
+        /*return this.http.get('/api/things')
             .subscribe((things: Thing[]) => {
                 this.awesomeThings = things;
-            });
+            });*/
     }
 
 
