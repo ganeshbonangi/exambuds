@@ -1,3 +1,11 @@
 mat-form-field {
     width: 300px;
 }
+
+.login {
+    text-align: center;
+}
+
+.ng-invalid:not(form) {
+    border-left: none;
+}
