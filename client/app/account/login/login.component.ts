@@ -1,9 +1,9 @@
 // @flow
 import {Component, OnInit} from '@angular/core';
 
-import { Router } from '@angular/router';
-import { AuthService } from '../../../components/auth/auth.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {Router} from '@angular/router';
+import {AuthService} from '../../../components/auth/auth.service';
+import {FormGroup, FormControl, Validators} from '@angular/forms';
 
 interface User {
     name: string;
@@ -14,8 +14,9 @@ interface User {
 @Component({
     selector: 'login',
     template: require('./login.html'),
+    styles: [require('./login.component.scss')]
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent implements OnInit {
     loginForm: FormGroup;
     user: User = {
         name: '',
@@ -29,23 +30,28 @@ export class LoginComponent implements OnInit{
 
 
     static parameters = [AuthService, Router];
+
     constructor(_AuthService_: AuthService, router: Router) {
         this.AuthService = _AuthService_;
         this.Router = router;
 
     }
 
-    ngOnInit(){
+    ngOnInit() {
         this.loginForm = new FormGroup({
             email: new FormControl('', {
                 validators: [Validators.required, Validators.email]
             }),
-            password: new FormControl('', { validators: [Validators.required] })
+            password: new FormControl('', {validators: [Validators.required]})
         });
     }
 
-    login(form) {
-        if(form.invalid) return;
+    /*onSubmit(){
+
+    }
+*/
+    onSubmit() {
+        if (this.loginForm.invalid) return;
 
         return this.AuthService.login({
             email: this.loginForm.value.email,
