@@ -1,8 +1,9 @@
 // @flow
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 import { Router } from '@angular/router';
 import { AuthService } from '../../../components/auth/auth.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 interface User {
     name: string;
@@ -14,7 +15,8 @@ interface User {
     selector: 'login',
     template: require('./login.html'),
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
+    loginForm: FormGroup;
     user: User = {
         name: '',
         email: '',
@@ -33,12 +35,21 @@ export class LoginComponent {
 
     }
 
+    ngOnInit(){
+        this.loginForm = new FormGroup({
+            email: new FormControl('', {
+                validators: [Validators.required, Validators.email]
+            }),
+            password: new FormControl('', { validators: [Validators.required] })
+        });
+    }
+
     login(form) {
         if(form.invalid) return;
 
         return this.AuthService.login({
-            email: this.user.email,
-            password: this.user.password
+            email: this.loginForm.value.email,
+            password: this.loginForm.value.password
         })
             .then(() => {
                 // Logged in, redirect to home

@@ -5,6 +5,8 @@ import {
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 import {
     removeNgStyles,
@@ -15,6 +17,7 @@ import {
 
 
 import { AppComponent } from './app.component';
+import { MaterialModule } from './material.module';
 import { MainModule } from './main/main.module';
 import { ContactUsModule } from './contact-us/contact-us.module';
 import { AboutUsModule } from './about-us/about-us.module';
@@ -50,8 +53,9 @@ export function tokenGetter() {
         TCModule,
         PrivacyModule,
         BrowserAnimationsModule,
-        MatButtonModule,
-        MatCheckboxModule
+        MaterialModule,
+        FormsModule,
+        ReactiveFormsModule
     ],
     declarations: [
         AppComponent,
