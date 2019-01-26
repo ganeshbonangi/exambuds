@@ -1,0 +1,17 @@
+<div class="container">
+  <form [formGroup]="form" class="example-form">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Email or Phone" value="">
+    </mat-form-field>
+      <mat-form-field class="example-full-width">
+      <input matInput placeholder="Password" value="">
+    </mat-form-field>
+    <button mat-raised-button (click)="login(form)">Login</button>
+    <button mat-raised-button routerLink="/signup">Register</button>
+    <div class="row">
+      <div class="col-sm-4 col-md-3">
+        <oauth-buttons classes="btn-block"></oauth-buttons>
+      </div>
+    </div>
+  </form>
+</div>
