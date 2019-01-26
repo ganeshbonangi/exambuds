@@ -1,15 +1,15 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { RouterModule, Routes } from '@angular/router';
-import { ContactUsComponent } from './contact-us.component';
-import {MatSelectModule} from '@angular/material/select';
-import { MatInputModule } from '@angular/material';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {FormsModule} from '@angular/forms';
+import {RouterModule, Routes} from '@angular/router';
+import {ContactUsComponent} from './contact-us.component';
+
+import {ReactiveFormsModule} from "@angular/forms";
+import {MaterialModule} from "../material.module";
 
 
 export const ROUTES: Routes = [
-    { path: 'contact-us', component: ContactUsComponent },
+    {path: 'contact-us', component: ContactUsComponent},
 ];
 
 
@@ -17,15 +17,18 @@ export const ROUTES: Routes = [
     imports: [
         BrowserModule,
         FormsModule,
+        ReactiveFormsModule,
         RouterModule.forChild(ROUTES),
-        MatFormFieldModule,
-        MatSelectModule
+        MaterialModule
     ],
     declarations: [
         ContactUsComponent
     ],
     exports: [
-        ContactUsComponent
+        ContactUsComponent,
+        FormsModule,
+        ReactiveFormsModule
     ],
 })
-export class ContactUsModule {}
+export class ContactUsModule {
+}

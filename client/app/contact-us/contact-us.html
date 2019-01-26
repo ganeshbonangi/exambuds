@@ -1,16 +1,39 @@
-
-<div class="container">
-  <mat-form-field>
-    <input matInput placeholder="Input">
-  </mat-form-field>
-
-  <mat-form-field>
-    <textarea matInput placeholder="Textarea"></textarea>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-select placeholder="Select">
-      <mat-option value="option">Option</mat-option>
-    </mat-select>
-  </mat-form-field>
+<div class="login" fxLayout="column" fxLayout.gt-md="row" fxLayoutGap.gt-md="20px" fxLayoutAlign="center center">
+    <section style="text-align: center;">
+        <form
+            fxLayout="column"
+            fxLayoutAlign="center center"
+            fxLayoutGap="10px"
+            [formGroup]="contactForm"
+            (ngSubmit)="onSubmit()">
+            <mat-form-field>
+                <input
+                    type="text"
+                    matInput
+                    placeholder="Full Name"
+                    formControlName="fullName">
+                <mat-hint>Please enter your name.</mat-hint>
+                <mat-error>Missing name.</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input
+                    type="Email"
+                    matInput
+                    placeholder="Your email"
+                    formControlName="email">
+                <mat-hint>Please enter your email.</mat-hint>
+                <mat-error>Missing email.</mat-error>
+            </mat-form-field>
+            <button type="submit" mat-raised-button color="primary" [disabled]="contactForm.invalid">Submit</button>
+        </form>
+    </section>
 </div>
+
+
+<!-- <ol>
+  <li>Add an email and password field (with Material Components of course)</li>
+  <li>Add validation (email => required and email, password => required)</li>
+  <li>Show errors and hints</li>
+  <li>Make form submittable and disable button if invalid</li>
+  <li>BONUS: Do all of that by using the reactive approach!</li>
+</ol> -->

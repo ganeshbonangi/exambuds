@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {Component, OnInit} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {validator} from "fast-json-patch";
 
 interface Thing {
     name: string;
@@ -12,17 +14,25 @@ interface Thing {
     styles: [require('./contact-us.scss')],
 })
 export class ContactUsComponent implements OnInit {
+    contactForm: FormGroup;
 
     awesomeThings: Thing[] = [];
     newThing = '';
 
     static parameters = [HttpClient];
+
     constructor(private http: HttpClient) {
         this.http = http;
 
     }
 
     ngOnInit() {
+        this.contactForm = new FormGroup({
+            fullName: new FormControl('', {
+                validators: [Validators.required]
+            }),
+            email: new FormControl('', {validators: [Validators.required, Validators.email]})
+        });
         return this.http.get('/api/things')
             .subscribe((things: Thing[]) => {
                 this.awesomeThings = things;
@@ -31,11 +41,11 @@ export class ContactUsComponent implements OnInit {
 
 
     addThing() {
-        if(this.newThing) {
+        if (this.newThing) {
             let text = this.newThing;
             this.newThing = '';
 
-            return this.http.post('/api/things', { name: text })
+            return this.http.post('/api/things', {name: text})
                 .subscribe(thing => {
                     console.log('Added Thing:', thing);
                 });
