@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {validator} from "fast-json-patch";
+import {AuthService} from "../../components/auth/auth.service";
+import {Router} from "@angular/router";
 
 interface Thing {
     name: string;
@@ -19,10 +21,15 @@ export class ContactUsComponent implements OnInit {
     awesomeThings: Thing[] = [];
     newThing = '';
 
-    static parameters = [HttpClient];
+    static parameters = [HttpClient, AuthService, Router];
+    errors = {login: undefined};
+    AuthService;
+    Router;
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, _AuthService_: AuthService, router: Router) {
         this.http = http;
+        this.AuthService = _AuthService_;
+        this.Router = router;
 
     }
 
@@ -38,6 +45,24 @@ export class ContactUsComponent implements OnInit {
             .subscribe((things: Thing[]) => {
                 this.awesomeThings = things;
             });
+    }
+
+    onSubmit() {
+        if (this.contactForm.invalid) return;
+
+       /* return this.AuthService.login({
+            name: this.contactForm.value.fullName,
+            email: this.contactForm.value.email,
+            content: this.contactForm.value.message
+        })
+            .then(() => {
+                // Logged in, redirect to home
+                this.Router.navigateByUrl('/home');
+
+            })
+            .catch(err => {
+                this.errors.login = err.json().message;
+            });*/
     }
 
 
