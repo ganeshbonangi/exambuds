@@ -1,4 +1,4 @@
-<div class="login" fxLayout="column" fxLayout.gt-md="row" fxLayoutGap.gt-md="20px" fxLayoutAlign="center center">
+<div class="contactus" fxLayout="column" fxLayout.gt-md="row" fxLayoutGap.gt-md="20px" fxLayoutAlign="center center">
     <section style="text-align: center;">
         <form
             fxLayout="column"
@@ -19,10 +19,20 @@
                 <input
                     type="Email"
                     matInput
-                    placeholder="Your email"
+                    placeholder="E-mail"
                     formControlName="email">
                 <mat-hint>Please enter your email.</mat-hint>
                 <mat-error>Missing email.</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input
+                    type="text"
+                    matInput
+                    placeholder="Message"
+                    formControlName="message">
+                <mat-hint>Please enter message.</mat-hint>
+                <mat-error>Missing message.</mat-error>
+
             </mat-form-field>
             <button type="submit" mat-raised-button color="primary" [disabled]="contactForm.invalid">Submit</button>
         </form>

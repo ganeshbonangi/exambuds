@@ -31,7 +31,8 @@ export class ContactUsComponent implements OnInit {
             fullName: new FormControl('', {
                 validators: [Validators.required]
             }),
-            email: new FormControl('', {validators: [Validators.required, Validators.email]})
+            email: new FormControl('', {validators: [Validators.required, Validators.email]}),
+            message: new FormControl('', {validators: [Validators.required]})
         });
         return this.http.get('/api/things')
             .subscribe((things: Thing[]) => {
